@@ -14,8 +14,8 @@ export const AddCommand: SlashCommand = {
   async run(interaction) {
     if (interaction.isChatInputCommand()) {
       const { options } = interaction;
-      const number1 = options.getNumber('number1') ?? 0;
-      const number2 = options.getNumber('number2') ?? 0;
+      const number1 = options.getNumber('number1', true);
+      const number2 = options.getNumber('number2', true);
       const sum = number1 + number2;
       await interaction.reply({
         content: `${number1} + ${number2} = ${sum}`,
