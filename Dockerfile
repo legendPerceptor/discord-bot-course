@@ -11,4 +11,7 @@ RUN yarn install
 COPY src ./src
 RUN yarn build
 
+# register the GUILD commands
+RUN npm run register-guild-commands
+
 CMD ["npm", "start"]
