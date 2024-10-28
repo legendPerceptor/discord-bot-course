@@ -16,6 +16,18 @@ yarn add -D prettier eslint typescript @typescript-eslint/eslint-plugin @typescr
 
 ## Deploy the app with docker
 
+We can directly use the docker compose file to ease the control:
+
+```bash
+# start the container (build it if not exist)
+docker compose up -d
+
+# stop the container and kill the app
+docker compose down
+```
+
+If ignoring the docker compose file, we can directly work with Dockerfile.
+
 1. Build the Dockerfile into a docker image
 
 ```bash

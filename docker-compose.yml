@@ -1,0 +1,7 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: skillshare-discord-bot
+    container_name: discord-bot-container
