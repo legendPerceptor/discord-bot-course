@@ -14,6 +14,14 @@ yarn add -D prettier eslint typescript @typescript-eslint/eslint-plugin @typescr
 
 `.nvmrc` is a Node.js version control configuration that is used by NVM. You can use `nvm use` to select the node version configured in this project.
 
+## Recommended VSCode Extensions for Development
+
+1. Error Lens (shows the ESLint errors inline instead of just a red underline).
+2. ESLint (for finding Javascript/Typescript problems).
+3. indent-rainbow (for more colorful and obvious indentation in code).
+4. Prettier (to format the code with customizable options).
+5. Material Theme Icons (The files will have a small icon next to it in the side bar).
+
 ## Deploy the app with docker
 
 We can directly use the docker compose file to ease the control:
