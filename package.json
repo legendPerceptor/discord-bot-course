@@ -12,7 +12,7 @@
     "dev:main": "nodemon src/main.ts",
     "register-guild-commands": "ts-node src/register-guild-commands.ts",
     "dev": "run-s register-guild-commands dev:main",
-    "start": "node build/src/main.js"
+    "start": "node build/main.js"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
