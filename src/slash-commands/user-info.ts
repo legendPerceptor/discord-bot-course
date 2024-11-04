@@ -6,7 +6,7 @@ import {
 } from 'discord.js';
 import { SlashCommand } from '../types';
 
-export const UserInfoCommand: SlashCommand = {
+const UserInfoCommand: SlashCommand = {
   command: new SlashCommandBuilder()
     .addUserOption((option) =>
       option
@@ -73,3 +73,5 @@ export const UserInfoCommand: SlashCommand = {
     }
   },
 };
+
+export { UserInfoCommand };
