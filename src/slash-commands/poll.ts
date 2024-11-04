@@ -190,6 +190,9 @@ const PollCommand: SlashCommand = {
 
       const addReactions = async () => {
         for (let i = 0; i < shownOptions.length; i++) {
+          if (tooFast) {
+            return;
+          }
           await message.react(shownOptions[i].emoji);
         }
       };
