@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, userMention } from '@discordjs/builders';
+import { SlashCommandBuilder, userMention } from 'discord.js';
 import { SlashCommand } from '../types';
 
 export const HelloCommand: SlashCommand = {

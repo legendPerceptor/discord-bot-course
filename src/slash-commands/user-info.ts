@@ -1,6 +1,10 @@
-import { SlashCommandBuilder } from 'discord.js';
+import {
+  SlashCommandBuilder,
+  EmbedBuilder,
+  userMention,
+  roleMention,
+} from 'discord.js';
 import { SlashCommand } from '../types';
-import { EmbedBuilder } from '@discordjs/builders';
 
 export const UserInfoCommand: SlashCommand = {
   command: new SlashCommandBuilder()
@@ -13,6 +17,15 @@ export const UserInfoCommand: SlashCommand = {
     .setName('user_info')
     .setDescription('Returns the info of a user'),
   async run(interaction) {
+    const getFormattedDate = (date: Date) => {
+      return date.toLocaleDateString(interaction.locale, {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+    };
+
     if (interaction.isChatInputCommand()) {
       const user = interaction.options.getUser('user', true);
       const avatar = user.displayAvatarURL();
@@ -22,11 +35,38 @@ export const UserInfoCommand: SlashCommand = {
         .setThumbnail(avatar)
         .addFields({
           name: 'Registered on',
-          value: user.createdAt.toDateString(),
+          value: getFormattedDate(user.createdAt),
           inline: true,
         })
         .setFooter({ text: `ID: ${user.id}` });
 
+      if (interaction.inGuild()) {
+        const guild =
+          interaction.guild ||
+          (await interaction.client.guilds.fetch(interaction.guildId));
+        const member =
+          guild.members.cache.get(user.id) ||
+          (await guild.members.fetch(user.id));
+        const jointedAt = member.joinedAt;
+
+        embed.setDescription(userMention(user.id));
+        if (jointedAt) {
+          embed.addFields({
+            name: 'Joined at',
+            value: getFormattedDate(jointedAt),
+          });
+        }
+        const roles = member.roles.cache;
+        const filteredRoles = roles
+          .filter((role) => role.name != '@everyone')
+          .map((role) => roleMention(role.id));
+        if (filteredRoles.length > 0) {
+          embed.addFields({
+            name: `Roles [${filteredRoles.length}]`,
+            value: filteredRoles.join(' '),
+          });
+        }
+      }
       await interaction.reply({
         embeds: [embed],
       });

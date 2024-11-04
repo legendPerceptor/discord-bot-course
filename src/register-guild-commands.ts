@@ -12,6 +12,9 @@ const registerGuildCommands = async () => {
     await rest.put(Routes.applicationGuildCommands(APPLICATION_ID, GUILD_ID), {
       body: commands,
     });
+    await rest.put(Routes.applicationCommands(APPLICATION_ID), {
+      body: commands,
+    });
     console.log('Successfully reloaded the guild commands.');
   } catch (err) {
     console.log(err);
